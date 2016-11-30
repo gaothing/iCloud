@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="icloud">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/icloud.css" />
+		<script src="js/jquery.js" type="text/javascript"></script>
+		<script src="js/icloud.js" type="text/javascript"></script>
+		<script src="js/angular.js" type="text/javascript"></script>
+	</head>
+	<body ng-controller="mainCtrl">
+		<div id="box">
+			<div class="left">
+				<div class="header">
+					<div class="b"></div>
+					<a href="#" class="remind">提醒事项
+					<span class="list-ico"></span></a>
+					
+					<a id="additem" ng-click="additem();save2local()" class="iconfont" href="javascript:;">+</a>
+				</div>
+				<div class="plan">
+					<span class="clock"></span>
+					<span class="ready">已计划</span>
+				</div>
+				<ul class="things" my-ul>
+					<li class="thing-eve" ng-repeat="v in lists track by $index">
+						<div style="background: {{v.theme}};" class="color-cir"></div>
+						<div class="text">{{v.name}}
+							<p class="ico"></p>
+						</div>		
+					</li>
+				</ul>
+			</div>
+			
+			
+			<!--content-->
+			<div class="right {{lists[cu].theme}}">
+				<input id="input" type="text" value="提醒所有提示" />
+				<div class="find"></div>
+				<div class="in">
+					<span>登录</span>
+					<span>|</span>
+					<span></span>
+				</div>
+				
+				<!--内容-->
+				<div class="in-list">
+					<span class="list-head " style="color: {{lists[cu].theme}};">{{lists[cu].name}}</span>
+					<a href="#" class="choose" ng-click="color($event)" style="color: {{lists[cu].theme}}">选项</a>
+				</div>
+				<div class="wan">
+					<a href="#" class="has">已完成:
+						<span class="san"></span>
+					</a>
+					<span>{{hasOver()}}</span>
+					<span>项</span>
+					<a href="#" class="delet" style="color: {{lists[cu].theme}}"></a>
+				</div>
+				<ul class="finish">
+					<li class="finish-eve"
+						ng-if="v.state===1"
+						ng-repeat="v in lists[cu].todos track by $index">
+						<div class="fin-lis" style="border-color:{{lists[cu].theme}}">
+							<div class="in-cir"
+								style="background:{{lists[cu].theme}}" ng-click="v.state=0;save2local()"></div>
+						</div>
+						<input type="text" class="finish-input"   class="unfinish-input"  ng-model="v.name"  ng-keyup="save2local()"/>
+						<div class="in-border"></div>
+						<div class="finish-wan" ng-click="delet($event,$index);save2local()">删除</div>
+					</li>
+					<!--<li class="finish-add"></li>-->
+				</ul>
+				<!--未完成-->
+				<div class="nowan">
+					<!--<span class="san"></span>-->
+					<a	href="#" class="nohas">未完成:
+						<span class="san"></span>
+					</a>
+					<span>{{unhasOver()}}</span>
+					<span>项</span>
+				</div>
+				<ul class="unfinish">
+					<li class="unfinish-eve" ;
+						ng-if="v.state===0"
+						ng-repeat="v in lists[cu].todos track by $index">
+						<div class="unfin-lis" style="border-color:{{lists[cu].theme}}">
+							<div class="un-cir" ng-click="v.state=1;save2local()"></div>
+						</div>
+						<input type="text"  class="unfinish-input" ng-model="v.name"
+							/>
+						<div class="un-border"></div>
+						<div class="unfinish-wan" ng-click="v.state=1;save2local()">完成</div>
+					</li>
+			
+				<li class="unfinish-add" >
+					<div class="un-border" ">新项目</div>
+					<input type="text" ng-model="value" class="addnewpro"/>
+					<a href="javascript:;" class="com" ng-click="addlis();save2local()">OK</a>
+				</li>
+				</ul>
+			</div>
+			<!--选项框-->
+			<div class="color {{lists[cu].theme}}">
+				<div class="box">
+					<input type="text" ng-model="lists[cu].name" />
+					<p>列表颜色</p>
+					<ul>
+						<li class="{{i}}" ng-repeat="i in color" ng-click="lists[cu].theme=i;save2local()" style="background: {{i}};">
+							<div class="out-cir">
+								<div class="in-cir"  style="background:{{i}}"></div>
+							</div>
+						</li>
+						
+					</ul>
+					<div class="color-bottom">
+						<div class="bLeft">
+							<a href="#" ng-click="save2local()"></a>
+						</div>
+						<div class="bRight">
+							<a class="cancels" href="javascript:;">取消</a>
+							<a href="javascript:;" ng-click="save2local()">完成</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		 
+	</body>
+</html>

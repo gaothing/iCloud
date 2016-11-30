@@ -1,0 +1,18 @@
+wechat.config([
+	'$routeProvider',
+	function($routeProvider){
+		$routeProvider.when('/',{
+			templateUrl:'chat/chat.html',
+			controller:'chatCtrl'
+		}).when('/box/:id',{
+			templateUrl:'box/box.html',
+			controller:'boxCtrl'
+		}).when('/contact',{
+			templateUrl:'contact/contact.html',
+			controller:'contactCtrl'
+		}).when('/about',{
+			templateUrl:'about/about.html',
+			controller:'aboutCtrl'
+		})
+	}
+])

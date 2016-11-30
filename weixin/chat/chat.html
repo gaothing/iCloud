@@ -1,0 +1,11 @@
+<div>
+	
+	<ul>
+		<li ng-repeat="v in chatList track by $index">
+			<span>{{v.id}}</span>
+			<a href="#/box/{{v.id}}"><span>{{v.name}}</span></a>
+			<span>{{v.lastMessage}}</span>
+		</li>
+	</ul>
+	
+</div>
