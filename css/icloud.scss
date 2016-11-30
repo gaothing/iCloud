@@ -1,520 +1,705 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    list-style: none;
-//  position: relative;
-}
-a{
-    text-decoration: none;
-    color: #333;
-}
-img{
-    vertical-align: middle;
-    border: 0;
-}
-@font-face {
-  font-family: "icontfont";
-  src:url("../font/SFNSText-Medium.woff");
-}
-.iconfont{
-  font-family: "iconfont";
-}
+
 html{
   font-size: 100px;
 }
 body{
-  background: url("../img/packed-4.png") repeat;
+  background: url("../images/background.png") repeat;
   font-size: 16px;
 }
-
-//颜色
-$color:("blue":#04ACF6,"green":#56D75E,"yellow":#EFCB41,"brown":#A57D59,"pink":#FF2369,"orange":#FD7830,"purple":#CB7AD7);
-                @each $i in map_keys($color) { 
-                      $l:map_get($color,$i);                
-                      .right.#{$i}{
-//                      background-color: nth($l,1);
-                      }
-                }  
-//              @each $v in map_keys($map){
-//          $l:map_get($map,$v);
-//          .hh.#{$v}{
-//              color: nth($l,1);
-//              background: url("t.png");
-//              background-position:nth($l,2) nth($l,3) ;
-//          }
-//      }          
-@mixin center {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+*{
+  padding:0;
+  margin:0;
+  list-style: none;
+  text-decoration: none;
 }
-@mixin display {
-    display: block; //  width: 100%;
-    height: 100%;
+.navbar-inverse{
+  background: transparent;
 }
 #box{
-    width: 100%;
-    height: auto;
-    @include center;
+    position: relative;
     .left{
-        float: left;
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 30%;
-        min-width: 280px;
-        height: 100%;
-        background: #383836;
-        overflow-x: hidden;
-        .header{
-            width: 100%;
-            height:49px;
-            border-bottom: 2px solid #31312F;
-            padding: 0 15px;
-            .b{
-                display: inline-block;
-                padding-top:14px;
-                width:80px;
+        background:#383836;
+        overflow: hidden;
+        height:100vh;
+        overflow: auto;
+        .left-top{
+            height:45px;
+            border-bottom: 2px solid #1A1A1A;
+            box-sizing: border-box;
+            overflow: hidden;
+            .app-brand{
+                width:65px;
                 height:17px;
-                background: url("../img/icloud.png");
+                padding:0;
+                margin-top:18px;
+                background: url("../images/icloud.png");
                 background-position: 8px -588px;
             }
-            .remind{
-                position: relative;
-                color: #9D9D9D;
+            .dropdown-toggle{
                 font-size: 20px;
-                height: 100%;
-                line-height: 51px;
-              .list-ico{
-                    display: block;
-                    border-bottom:5px solid transparent;
-                    border-left: 5px solid transparent;
-                    border-top: 5px solid #9D9D9D;
-                    border-right: 5px solid transparent;
-                    position: absolute;
-                    right: -12px;
-                    top: 10px;
-                }
-     
             }
-            .remind:hover{
-                color: #fff;
-            }
-            .remind:hover .list-ico{
-                border-top: 5px solid ;
-            }
-             #additem{
-                 float: right;
-                 height: 100%;
-                 line-height: 51px;
-                 color: #fff;
-                 font-weight: bold;
-                 font-size: 30px;
-                padding: 0 10px;
-                margin-right: 20px;
-    }
-        }
-        .plan,.things{
-            width: 100%;
-            height: 49px;
-            border-bottom: 1px solid #31312F;
-        }
-        .plan{
-            padding-left: 15px;
-            .clock{
-                float: left;
-                width:19px;
-                 height:19px;
-                 margin: 14px 10px 0px 0px;
-                 background: url(../img/icloud.png) no-repeat;
-            background-position: -11px -371px;
-            }
-            .ready{
-                float: left;
-                font-size: 20px;
-                color: #fff;
-                line-height: 49px;
-            }
-        }
-        .things{
-            height: auto;
-            border: 0;
-            .thing-eve{
-                overflow: hidden;
-                height: 51px;
-                padding: 10px 0 0px 15px;
-                .color-cir{
-                    float: left;
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 50%;
-                    background: orange;
-                    margin:4px 10px 4px 0 ;
-                }
-                .text{
-                    float: left;
-                    width: 82%;
-                    height: 100%;
-                    text-align: left;
-                    line-height: 29px;
-                    color: #fff;
-                    border-bottom: 1px solid #31312F;
-                    font: 18px "microsoft yahei";
-                    .ico{
-                    float: right;
-                    width:25px;
-                    height: 25px;
-                    background:url(../img/icloud.png) repeat;
-                    background-position: -285px -497px;
-                    }
-                    .ico:hover{
-                        cursor: pointer;
-                         background-position:-308px -497px;
-                    }
-                }
+            .iconfont{
+                font-size: 30px;
                 
             }
         }
-//      $map:(
-//      'red':#F72469 20px 30px,
-//      'yellow':#f3cb00 70px 90px,
-//      'blue':#40acf9 7px 67px
-//      );
-//      @each $v in map_keys($map){
-//          $l:map_get($map,$v);
-//          .hh.#{$v}{
-//              color: nth($l,1);
-//              background: url("t.png");
-//              background-position:nth($l,2) nth($l,3) ;
-//          }
-//      }
-//      $map:(
-//      'red':red 0px 90px,
-//      'yellow':yellow 0px 90px
-//      );
-//       @each $v in map_keys($map){
-//          $k:map_get($map,$v);
-//          .kk.#{$v}{
-//             #{$v}: nth($k,1);
-//          }
-//      }
-    }
-    .right{
-        position: relative;
-        float: left;
-        width: 70%;
-        height: 100%;
-        overflow-x: hidden;
-        #input{
-            width: 100%;
-            height:49px;
-            border: 0;
-            border-bottom: 1px solid #CDCDCD;
-            background: transparent;
-            font-size: 30px;
-            padding-left: 45px;
-            font-size: 20px;
-            color: #ccc;
-            outline: none;
-        }
-        .find,.in{
-             position: absolute; 
-             display: block;
-        }
-        .find{
-            left: 10px;
-            top: 10px;
-            width: 25px;
-            height: 25px;
-            background: url(../img/icloud.png);
-            background-position: -306px -357px;
-        }
-        .in{
-            right: 30px;
-            top: 0px;
-            height: 49px;
-            line-height: 49px;
-            span{
-               float: left;
-               height: 100%;
-               line-height: 49px;
-            }
-            span:nth-child(2){
-                padding: 0 20px; 
-            }
-             span:nth-child(3){
-                width: 23px;
-                height: 23px;
-                margin-top: 10px;
-                background: url(../img/icloud.png);
-                background-position: -281px -525px;
-            }
-        }
-    }
-    .in-list{
-        margin-left: 30px;
-        margin-top: 20px;
-        height: 50px;
-        border-bottom:  1px solid #E0E0E0;
         
-        .list-head{
-            color: #FF2369;
-            line-height: 49px;
-            font-size:35px ;
-            
-        }
-         @each $i in map_keys($color) {                 
-                      .list-head.#{$i}{
+        .left-bottom{
+            width: 100%;
+            li{
+                height: 45px;
+                box-sizing: border-box;
+                .circle{
+                    border-radius: 50%;
+                    float: left;
+                    display: block;
+                    width: 15px;
+                    height: 15px;
+                    margin-left: 20px;
+                    margin-top: 15px;
+                    margin-right: 10px;
+                    background: #04ACF6;
+                }
+                $color:("blue":#04ACF6,"green":#56D75E,"yellow":#EFCB41,"brown":#A57D59,"pink":#FF2369,"orange":#FD7830,"purple":#CB7AD7);
+                @each $i in map_keys($color) {                 
+                      .circle.#{$i}{
                         background-color: map_get($color,$i);
                       }
-                }            
-        .choose{
-            float: right;
-             line-height: 49px;
-            margin-right: 30px;
-            color: #FF2369;
-            font-size: 16px;
+                }                        
+                .center{
+                    height: 45px;
+                    background: transparent;
+                    font-size: 20px;
+                    width: 83%;
+                    color: #fff;
+                    float: left;
+                    border-bottom: 1px solid #1A1A1A;
+                    box-sizing: border-box;
+                    line-height: 44px;
+                    .wenzi{
+                        width: 50% ;
+                        display: block;
+                        float: left;
+                        background: transparent;
+                        border: none;
+                        outline: none;
+                    }
+                    .wifi{
+                        float: right;
+                        display: block;
+                        width: 25px;
+                        height: 25px;
+                        background: url("../images/icloud.png") repeat;
+                        background-position: -285px -497px;
+                        margin-left: 20px;
+                        margin-top: 9px;
+                        margin-right: 10px;
+                        &:hover{
+                           cursor: pointer;
+                           background-position:-308px -497px;
+                         }
+                    }
+                    
+                }
+            }
+            .active{
+                background: #1A1A1A;
+            }
+            
+            
         }
-    }
-    .wan{
-        position: relative;
-        height: 52px;
-        border-bottom:  1px solid #CCCCCC;
+        .jihua{
+            height: 45px;
+            border-bottom: 1px solid #1A1A1A;
+            box-sizing: border-box;
+            span{
+                width: 19px;
+                height: 19px;
+                margin-left: 20px;
+                margin-top: 13px;
+                border-radius: 0;
+                background: url("../images/icloud.png") no-repeat;
+                background-position: -11px -371px;
+                margin-right: 10px;
+                float: left;
+                display: block;
+            }
+            div{
+                height: 45px;
+                background: transparent;
+                font-size: 20px;
+                width: 83%;
+                color: #fff;
+                float: left;
+                border-bottom: 0;
+                box-sizing: border-box;
+                line-height: 44px;
+            }
+        }
         
-        span,a{
-         font-size: 20px;
-            color: #9E9E9E;
-            line-height: 51px;
-            font-weight: 500;
-         span:nth-child(2){
-           font-weight: bold;
-       }
-        }
-        .has{
-            margin-left: 40px;
-            .san{
-                position: absolute;
-                left: 30px;
-                top: 24px;
-                line-height: 52px;
-                border: 4px solid transparent;
-                border-top: 4px solid #9E9E9E;
-               }
-               .san-act{
-                   transform: rotate(-90deg);
-               }
-        }
-        .delet{
-           float: right;
-             line-height: 49px;
-            margin-right: 30px;
-            color: #FF2369;
-            font-size: 16px; 
-        }
+        
+        
+        
     }
-    .finish{
-        width: 100%;
-        height: auto;
-        .finish-eve{
-            position: relative;
-            height: 52px;
-//          padding-left: 40px;
-            .fin-lis{
-                position: absolute;
-                top: 0;
-                left: 40px;
-                bottom: 0;
-                margin: auto;
+    .right{
+        position: absolute;
+        top: 0;
+        width: 70%;
+        height: 100vh;
+        overflow: hidden;
+        right: 0;
+        z-index: 20;
+        .right-top{
+            height: 45px;
+            width: 100%;
+            border-bottom: 1px solid #CDCDCD;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            overflow: hidden;
+            .sousuo{
                 width: 25px;
                 height: 25px;
-                background: transparent;
-                border: 2px solid #FFA500;
-                 border-radius: 50%;  
-                .in-cir{
-                 position: absolute;
-                 top: 0;
-                 left: 0;
-                 right: 0;
-                 bottom: 0;
-                 margin: auto; 
-                 width: 17px;
-                 height: 17px;
-                 border-radius: 50%; 
-                 background: #FFA500; 
-                }
+                margin: 5px;
+                margin-top: 10px;
+                margin-left: 10px;
+                float: left;
+                display: block;
+                background: url("../images/icloud.png");
+                background-position: -306px -357px;
             }
-             .in-border{
-                 position: absolute;
-                 left:20px;
-                 top: 0;
-                height: 100%;
-                width: 100%;
-                margin-left: 60px;
-                border-bottom: 1px solid #CCCCCC;
-                z-index: -1;
-            }
-            .finish-wan{
-                     position: absolute;
-                right: 10px;
-                top: 0;
-                height: 100%;
-                width: auto;
-                line-height: 51px;
-                }
-            .finish-input{
-                height: 100%;
-                width: 100%;
-                background: transparent;
-                border: 1px solid transparent;
-                border-bottom: none;
-                border-top: none;
-                font-size: 28px;
-                padding-left: 66px;
-            }
-        }
-    }
-    ///////////////
-        .nowan{
-        position: relative;
-        height: 52px;
-        border-bottom:  1px solid #CCCCCC;
-        span,a{
-         font-size: 20px;
-            color: #9E9E9E;
-            line-height: 51px;
-            font-weight: 500;
-        }
-       span:nth-child(3){
-           font-weight: bold;
-       }
-        .nohas{
-            position: relative;
-             margin-left: 40px;
-            .san{
-                position: absolute;
-                left: -40px;
-                top: 10px;
-                line-height: 52px;
-                margin-left: 30px;
-                border: 4px solid transparent;
-                border-top: 4px solid #9E9E9E;
-            }
-            .san-act{
-                
-                transform: rotate(-90deg);
-            }
-        }
-    }
-    .unfinish{
-        width: 100%;
-        height: auto;
-        .unfinish-eve{
-            position: relative;
-            height: 52px;
-//          padding-left: 40px;
-            .unfin-lis{
-                position: absolute;
-                top: 0;
-                left: 40px;
-                bottom: 0;
-                margin: auto;
-                width: 25px;
-                height: 25px;
-                background: transparent;
-                border: 2px solid #FFA500;
-                 border-radius: 50%;  
-                .un-cir{
-                 position: absolute;
-                 top: 0;
-                 left: 0;
-                 right: 0;
-                 bottom: 0;
-                 margin: auto; 
-                 width: 17px;
-                 height: 17px;
-                 border-radius: 50%; 
-                 background: transparent; 
-                }
-            }
-            .unfinish-input{
-                height: 100%;
-                width: 100%;
-                background: transparent;
-                border: 1px solid transparent;
-                border-bottom: none;
-                border-top: none;
-                font-size: 28px;
-                padding-left: 66px;
-            }
-              .un-border{
-                 position: absolute;
-                 left:20px;
-                 top: 0;
-                 height: 100%;
-                 width: 100%;
-                 margin-left: 60px;
-                 z-index: -1;
-                 border-bottom: 1px solid #CCCCCC;
-                }
-                .unfinish-wan{
-                     position: absolute;
-                right: 10px;
-                top: 0;
-                height: 100%;
-                width: auto;
-                line-height: 51px;
-                }
-        }
-    }
-    .unfinish-add{
-        position: relative;
-            height: 52px;
             input{
-                width: 100%;
-                height: 100%;
                 border: 0;
-                  font-size: 28px;
+                display: block;
+                float: left;
                 background: transparent;
+                outline: none;
+                font-size: 20px;
+                line-height: 45px;
+            }
+            .top-right{
+                float: right;
+                margin-right: 30px;
+                line-height: 45px;
+                span:nth-child(1){
+                    font-size: 18px;
+                    padding-right: 20px;
+                    border-right: 1px solid #272727;
+                    letter-spacing: 2px;
+                }
+                span:nth-child(2){
+                    width: 23px;
+                    display: block;
+                    float: right;
+                    margin-top: 11px;
+                    margin-left: 20px;
+                    height: 23px;
+                    background: url("../images/icloud.png");
+                    background-position: -282px -525px;
+                }
                 
             }
-            .un-border{
-                position: absolute;
-                left: 80px;
-                top: 0;
-                width: 100%;
-                height: 100%;
-//               margin-left: 80px;
-                 border-bottom: 1px solid #CCCCCC;
-                 font-size: 20px;
-                 color: #9E9E9E;
-                 line-height: 51px;
-                 z-index: -1;
-            }
-            .com{
-                position: absolute;
-                right: 10px;
-//              display: ;
-                top: 0;
-                height: 100%;
-                width: auto;
-                line-height: 51px;
+        }
+        .right-options{
+            margin-left: 30px;
+            font-size: 35px;
+            line-height: 49px;
+            color: #04ACF6;
+            height: 50px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #CDCDCD;
+            position: relative;
+
+            .options{
+                color: #04ACF6;
+                position: relative;
+                float: right;
+                font-size: 15px;
+                margin-right: 30px;
+                cursor: default;
+                font-weight: bold;
             }
         }
-//      $color:("blue":#04ACF6,"green":#56D75E,"yellow":#EFCB41,"brown":#A57D59,"pink":#FF2369,"orange":#FD7830);
-//  @each $i in map_keys($color) {   
-//                  
-//        .color.#{$i} .box input{
-//            color: map_get($color,$i);
-//        }
-//         .color .box ul li.#{$i}{
-//          background: map_get($color,$i);
-//          div{
-//              background: map_get($color,$i);
-//          }               
-//        }
-//    }
-        .color{
+        .right-finish{
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            height: 52px;
+            border-bottom: 1px solid #ccc;
+            .uls{
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                li{
+                    width: 100%;
+                    font-size: 24px;
+                    line-height: 52px;
+                    color: #9e9e9e !important;
+                    
+                }
+                .done{
+                    width: 100%;
+                    font-size: 24px;
+                    height: 52px;
+                    display: block;
+                    line-height: 52px;
+                    color: #9e9e9e !important;
+                    position: relative;
+                    &>a{
+                        font-size: 20px;
+                        margin-left: 30px;
+                        float: left;
+                        color:#9e9e9e;
+                        text-decoration: none;
+                        .s{
+                            display: inline-block;
+                            height: 10px;
+                            width: 10px;
+                            vertical-align: middle;
+                            border-top: 4px solid;
+                            border-right: 4px solid transparent;
+                            border-left: 4px solid transparent;
+                            margin: 0 5px;
+                            transform: rotateZ(0deg);
+                        }
+                        .s.rotate{
+                            animation: index 0.1s linear both;
+                        }
+                        @keyframes index {
+                            from {transform: rotateZ(0deg);}
+                            to {transform: rotateZ(-90deg);}
+                        }
+                       
+                    }
+                    
+                    .del{
+                        float: right;
+                        font-weight: bold;
+                        text-align: right;
+                        padding-right: 30px;
+                        font-size: 15px;
+                        color: #04ACF6;
+                        text-decoration: none;
+                    }
+                    ul{
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        z-index: 1000;
+                        border: 0;
+                        float: left;
+                        margin: 2px 0 0;
+                        border-radius: 4px;
+                        font-size: 14px;
+                        text-align: left;
+                        list-style: none;
+                        background: transparent;
+                        width: 100%;
+                        &>.lis{
+                            width: 100%;
+                            font-size: 24px;
+                            line-height: 52px;
+                            height: 52px;
+                            display: block;
+                            color: #9e9e9e !important;
+                            border-bottom: 1px solid #ccc;
+                            a{
+                                font-size: 20px;
+                                margin-left: 30px;
+                                float: left;
+                                color:#9e9e9e;
+                                text-decoration: none;
+                                .s1{
+                                    display: inline-block;
+                                    height: 10px;
+                                    width: 10px;
+                                    vertical-align: middle;
+                                    border-top: 4px solid;
+                                    border-right: 4px solid transparent;
+                                    border-left: 4px solid transparent;
+                                    margin: 0 5px;
+                                }
+                                .s1.rotate1{
+                                    animation: index1 0.1s linear both;
+                                }
+                                @keyframes index1 {
+                                    from {transform: rotateZ(0deg);}
+                                    to {transform: rotateZ(-90deg);}
+                                }
+                            }
+                            
+                        }
+                        &>.yi{
+                            padding-left: 30px;
+                            position: relative;
+                            height: 52px;
+                            &>.big{
+                                border-color: #04ACF6;
+                                width: 0.25rem;
+                                height: 0.25rem;
+                                border: 2px solid #04ACF6;
+                                background: transparent;
+                                box-sizing: border-box;
+                                border-radius: 50%;
+                                float: left;
+                                position: absolute;
+                                top: 0;
+                                left: 30px;
+                                right: 0;
+                                bottom: 0;
+                                margin: auto 10px;
+                                
+                                &>.small{
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    right: 0px;
+                                    bottom: 0;
+                                    margin: auto;
+                                    width: 0.17rem;
+                                    height: 0.17rem;
+                                    background: #04ACF6;
+                                    border-radius: 50%;
+                                }
+                            }
+                            input{
+                                background: transparent;
+                                border: 0;
+                                height: 52px;
+                                outline: none;
+                                width: 92%;
+                                display: block;
+                                line-height: 26px;
+                                font-size: 20px;
+                                padding: 12px 0;
+                                float: left;
+                                box-sizing: border-box;
+                                border-bottom: 1px solid #ccc;
+                                margin-left: 50px;
+                            }
+                            &>.delete{
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                font-weight: bold;
+                                text-align: right;
+                                padding-right: 30px;
+                                font-size: 15px;
+                                color: #04ACF6;
+                                text-decoration: none;
+                                display: none;
+                            }
+                            &>.top{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 1px;
+                                background: #04ACF6;
+                                display: none;
+                                z-index: 0;
+                            }
+                             &>.bot{
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 1px;
+                                background: #04ACF6;
+                                display: none;
+                                z-index: 0;
+                            }
+                             &>.back{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                opacity: 0.1;
+                                background: #04ACF6;
+                                display: none;
+                                z-index: -1;
+                            }
+                            .active{
+                                display: block;
+                            }
+                        }
+                        .index{
+                            display: none;
+                        }
+                        .yi.change{
+                            &>.delete{
+                                display: block;
+                            }
+                            &>.top{
+                                display: block;
+                            }
+                            &>.bot{
+                                display: block;
+                            }
+                            &>.back{
+                                display: block;
+                            }
+                        }
+                        &>.wei{
+                            padding-left: 30px;
+                            position: relative;
+                            height: 52px;
+                            &>.big{
+                                border-color: #04ACF6;
+                                width: 0.25rem;
+                                height: 0.25rem;
+                                border: 2px solid #04ACF6;
+                                background: transparent;
+                                box-sizing: border-box;
+                                border-radius: 50%;
+                                float: left;
+                                position: absolute;
+                                top: 0;
+                                left: 30px;
+                                right: 0;
+                                bottom: 0;
+                                margin: auto 10px;
+                            }
+                            input{
+                                background: transparent;
+                                border: 0;
+                                height: 52px;
+                                outline: none;
+                                width: 92%;
+                                display: block;
+                                line-height: 26px;
+                                font-size: 20px;
+                                padding: 12px 0;
+                                float: left;
+                                box-sizing: border-box;
+                                border-bottom: 1px solid #ccc;
+                                margin-left: 50px;
+                            }
+                            &>.delete{
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                font-weight: bold;
+                                text-align: right;
+                                padding-right: 30px;
+                                font-size: 15px;
+                                color: #04ACF6;
+                                display: none;
+                                text-decoration: none;
+                            }
+                            &>.top{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 1px;
+                                background: #04ACF6;
+                                display: none;
+                                z-index: 0;
+                            }
+                             &>.bot{
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                width: 100%;
+                                display: none;
+                                height: 1px;
+                                background: #04ACF6;
+                                z-index: 0;
+                            }
+                             &>.back{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                display: none;
+                                opacity: 0.1;
+                                background: #04ACF6;
+                                z-index: -1;
+                            }
+                        }
+                        .index{
+                            display: none;
+                        }
+                        .wei.change{
+                            &>.delete{
+                                display: block;
+                            }
+                            &>.top{
+                                display: block;
+                            }
+                            &>.bot{
+                                display: block;
+                            }
+                            &>.back{
+                                display: block;
+                            }
+                        }
+                        
+                        &>.import{
+                            padding-left: 30px;
+                            position: relative;
+                            height: 52px;
+                            display: none;
+                            &>.over{
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                font-weight: bold;
+                                text-align: right;
+                                padding-right: 30px;
+                                font-size: 15px;
+                                color: #04ACF6;
+                                text-decoration: none;
+                            }
+                            &>.top{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 1px;
+                                background: #04ACF6;
+                                z-index: 0;
+                            }
+                             &>.bot{
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 1px;
+                                background: #04ACF6;
+                                z-index: 0;
+                            }
+                             &>.back{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                opacity: 0.1;
+                                background: #04ACF6;
+                                z-index: -1;
+                            }
+                             &>.text{
+                                 background: transparent;
+                                height: 52px;
+                                outline: none;
+                                width: 92%;
+                                display: block;
+                                line-height: 26px;
+                                font-size: 20px;
+                                padding: 12px 0;
+                                float: left;
+                                box-sizing: border-box;
+                                margin-left: 50px;
+                                border: 0;
+                                z-index: 1;
+                            }
+                        }
+                        &>.active{
+                            display: block;
+                        }
+                        &>.add{
+                            padding-left: 30px;
+                            position: relative;
+                            height: 52px;
+                            input{
+                                background: transparent;
+                                border: 0;
+                                height: 52px;
+                                outline: none;
+                                width: 92%;
+                                display: block;
+                                line-height: 26px;
+                                font-size: 20px;
+                                padding: 12px 0;
+                                float: left;
+                                box-sizing: border-box;
+                                border-bottom: 1px solid #ccc;
+                                margin-left: 50px;
+                            }
+                        }
+                    }
+                    
+                }
+
+                
+            }
+        }
+    }
+    $color:("blue":#04ACF6,"green":#56D75E,"yellow":#EFCB41,"brown":#A57D59,"pink":#FF2369,"orange":#FD7830,"purple":#CB7AD7);
+    @each $i in map_keys($color) {                 
+          .right .right-options span.#{$i}{
+            color: map_get($color,$i);
+          }
+          .color .box ul li.#{$i}{
+            background: map_get($color,$i);
+            border: 2px solid map_get($color,$i);
+            div{
+                background: map_get($color,$i);
+            }               
+          }
+          .right.#{$i} .right-finish .uls .done ul .yi .big{
+                  border-color: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .yi .big .small{
+                  background: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .wei .big{
+               border: 2px solid map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done .del,.right.#{$i} .right-options .options{
+              color: map_get($color,$i);
+          }
+          .color.#{$i} .box input{
+              color: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .import .top{
+               background: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .import .back{
+               background: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .import .bot{
+               background: map_get($color,$i);
+          }
+           .right.#{$i} .right-finish .uls .done ul .import .over{
+               color: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .yi .top{
+               background: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .yi .back{
+               background: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .yi .bot{
+               background: map_get($color,$i);
+          }
+           .right.#{$i} .right-finish .uls .done ul .yi .delete{
+               color: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .wei .top{
+               background: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .wei .back{
+               background: map_get($color,$i);
+          }
+          .right.#{$i} .right-finish .uls .done ul .wei .bot{
+               background: map_get($color,$i);
+          }
+           .right.#{$i} .right-finish .uls .done ul .wei .delete{
+               color: map_get($color,$i);
+          }
+          
+    }
+    
+        
+    .color{
         position: absolute;
         display: none;
         width: 366px;
@@ -532,7 +717,7 @@ $color:("blue":#04ACF6,"green":#56D75E,"yellow":#EFCB41,"brown":#A57D59,"pink":#
             border: 1px solid #ccc;
             border-radius: 5px;
             input{
-//              color: #04ACF6;
+                color: #04ACF6;
                 width: 302px;
                 height: 40px;
                 margin: 10px 17px;
@@ -559,7 +744,7 @@ $color:("blue":#04ACF6,"green":#56D75E,"yellow":#EFCB41,"brown":#A57D59,"pink":#
                     margin: 0 2px;
                     border-radius: 50%;
                     box-sizing: border-box;
-                    .out-cir{
+                    div{
                         width: 14px;
                         height: 14px;
                         position: absolute;
@@ -570,26 +755,16 @@ $color:("blue":#04ACF6,"green":#56D75E,"yellow":#EFCB41,"brown":#A57D59,"pink":#
                         bottom: 0;
                         margin: auto;
                         border-radius: 50%;
-                        .in-cir{
-                            display: none;
-                            @include center;
-                            width:10px ;
-                            height: 10px;
-                            
-                            border: 2px solid #FFF;
-                        }
                     }
                 }
-                .index{
-                    opacity: 0.8;
+                li.index{
+                    background: transparent;
                 }
-                .active{
-                    margin-left: 20px;
-                }
+
             }
             .color-bottom{
                 height: 25px;
-                margin-top: 10px;
+                 margin-top: 10px;
                  .bLeft{
                      float: left;
                      height: 25px;
@@ -633,4 +808,4 @@ $color:("blue":#04ACF6,"green":#56D75E,"yellow":#EFCB41,"brown":#A57D59,"pink":#
         display: block;
     }
 }
- 
+

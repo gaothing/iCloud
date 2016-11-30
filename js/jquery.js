@@ -10349,3 +10349,57 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
+
+
+
+// 返回顶部
+
+jQuery.extend({
+	backTop:function(obj,time){
+		obj.on("click",function(){
+			var top=$(window).scrollTop();
+			var con={aa:top};
+			$(con).animate({aa:0},{
+				duration:time,
+				step:function(){
+					$(window).scrollTop(con.aa)
+				}
+			})
+		})
+	}
+})
+
+
+// 滚轮事件
+
+jQuery.fn.extend({
+	mousewheel:function(up,down){
+		this.each(function(index,obj){
+			if(obj.attachEvent){
+				// IE
+				obj.attachEvent("onmousewheel",scrollFn);
+			}else if(obj.addEventListener){
+				// 谷歌
+			obj.addEventListener("mousewheel",scrollFn,false);
+			    // 火狐
+			obj.addEventListener("DOMMouseScroll",scrollFn,false);
+			}
+			function scrollFn(e){
+				var e=e||window.event
+				if(e.preventDefault){
+					e.preventDefault();	
+				}else{
+					e.returnValue=false;
+				}
+				        // IE         FF
+				var nub=e.wheelDelta||e.detail;
+				if(nub==120||nub==-3){
+					// 改变thus指针 让this指向obj
+					up.call(obj);
+				}else if(nub==-120||nub==3){
+					down.call(obj);
+				}
+			}
+		})
+	}
+});

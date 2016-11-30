@@ -1,130 +1,480 @@
 <!DOCTYPE html>
-<html ng-app="icloud">
+<html lang="en" ng-app="test">
 	<head>
-		<meta charset="utf-8" />
-		<title></title>
-		<link rel="stylesheet" href="css/icloud.css" />
-		<script src="js/jquery.js" type="text/javascript"></script>
-		<script src="js/icloud.js" type="text/javascript"></script>
-		<script src="js/angular.js" type="text/javascript"></script>
+		<meta charset="UTF-8">
+		<title>iCloud</title>
+	    <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" href="css/iCloud.css">
+	    <script src="js/jquery.js"></script>
+	    <script src="js/angular.js"></script>		
 	</head>
-	<body ng-controller="mainCtrl">
+	<body ng-controller="testCtrl">
 		<div id="box">
 			<div class="left">
-				<div class="header">
-					<div class="b"></div>
-					<a href="#" class="remind">提醒事项
-					<span class="list-ico"></span></a>
-					
-					<a id="additem" ng-click="additem();save2local()" class="iconfont" href="javascript:;">+</a>
+				<div class="left-top">
+					<nav class=" navbar-default navbar-inverse" role="navigation">
+	                    <div class="container-fluid">
+	                        <!-- Brand and toggle get grouped for better mobile display -->
+	                        <div class="navbar-header">
+	                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                                <span class="sr-only">Toggle navigation</span>
+	                                <span class="icon-bar"></span>
+	                                <span class="icon-bar"></span>
+	                                <span class="icon-bar"></span>
+	                            </button>
+	                            <a class="navbar-brand app-brand" href="#"></a>
+	                        </div>
+	
+	                        <!-- Collect the nav links, forms, and other content for toggling -->
+	                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	                            <ul class="nav navbar-nav">
+	                                <li class="dropdown">
+	                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">提醒事项<span class="caret"></span></a>
+	                                    <ul class="dropdown-menu" role="menu">
+	                                        <li><a href="#">Action</a></li>
+	                                        <li><a href="#">Another action</a></li>
+	                                        <li><a href="#">Something else here</a></li>
+	                                        <li class="divider"></li>
+	                                        <li><a href="#">Separated link</a></li>
+	                                        <li class="divider"></li>
+	                                        <li><a href="#">One more separated link</a></li>
+	                                    </ul>
+	                                </li>
+	                            </ul>
+	                            <ul class="nav navbar-nav navbar-right">
+	                                <li><a href="#" id="additem" class="iconfont" ng-click="addlist();save2local()">+</a></li>
+	                            </ul>
+	                        </div><!-- /.navbar-collapse -->
+	                    </div><!-- /.container-fluid -->
+	               </nav>
 				</div>
-				<div class="plan">
-					<span class="clock"></span>
-					<span class="ready">已计划</span>
-				</div>
-				<ul class="things" my-ul>
-					<li class="thing-eve" ng-repeat="v in lists track by $index">
-						<div style="background: {{v.theme}};" class="color-cir"></div>
-						<div class="text">{{v.name}}
-							<p class="ico"></p>
-						</div>		
-					</li>
-				</ul>
-			</div>
-			
-			
-			<!--content-->
-			<div class="right {{lists[cu].theme}}">
-				<input id="input" type="text" value="提醒所有提示" />
-				<div class="find"></div>
-				<div class="in">
-					<span>登录</span>
-					<span>|</span>
+				<div class="jihua">
 					<span></span>
+					<div>已计划</div>
 				</div>
-				
-				<!--内容-->
-				<div class="in-list">
-					<span class="list-head " style="color: {{lists[cu].theme}};">{{lists[cu].name}}</span>
-					<a href="#" class="choose" ng-click="color($event)" style="color: {{lists[cu].theme}}">选项</a>
-				</div>
-				<div class="wan">
-					<a href="#" class="has">已完成:
-						<span class="san"></span>
-					</a>
-					<span>{{hasOver()}}</span>
-					<span>项</span>
-					<a href="#" class="delet" style="color: {{lists[cu].theme}}"></a>
-				</div>
-				<ul class="finish">
-					<li class="finish-eve"
-						ng-if="v.state===1"
-						ng-repeat="v in lists[cu].todos track by $index">
-						<div class="fin-lis" style="border-color:{{lists[cu].theme}}">
-							<div class="in-cir"
-								style="background:{{lists[cu].theme}}" ng-click="v.state=0;save2local()"></div>
+				<div my-ul>
+					
+					<li ng-class="{active:cu===$index}" ng-repeat="x in lists track by $index">
+						<span class="circle {{x.theme}}"></span>
+						<div class="center">
+							<input class="wenzi" ng-model="x.name" ng-keyup="save2local()" type="text" />
+							<!--<input type="text" />-->
+							<span class="wifi"></span>
 						</div>
-						<input type="text" class="finish-input"   class="unfinish-input"  ng-model="v.name"  ng-keyup="save2local()"/>
-						<div class="in-border"></div>
-						<div class="finish-wan" ng-click="delet($event,$index);save2local()">删除</div>
 					</li>
-					<!--<li class="finish-add"></li>-->
-				</ul>
-				<!--未完成-->
-				<div class="nowan">
-					<!--<span class="san"></span>-->
-					<a	href="#" class="nohas">未完成:
-						<span class="san"></span>
-					</a>
-					<span>{{unhasOver()}}</span>
-					<span>项</span>
 				</div>
-				<ul class="unfinish">
-					<li class="unfinish-eve" ;
-						ng-if="v.state===0"
-						ng-repeat="v in lists[cu].todos track by $index">
-						<div class="unfin-lis" style="border-color:{{lists[cu].theme}}">
-							<div class="un-cir" ng-click="v.state=1;save2local()"></div>
-						</div>
-						<input type="text"  class="unfinish-input" ng-model="v.name"
-							/>
-						<div class="un-border"></div>
-						<div class="unfinish-wan" ng-click="v.state=1;save2local()">完成</div>
-					</li>
-			
-				<li class="unfinish-add" >
-					<div class="un-border" ">新项目</div>
-					<input type="text" ng-model="value" class="addnewpro"/>
-					<a href="javascript:;" class="com" ng-click="addlis();save2local()">OK</a>
-				</li>
-				</ul>
 			</div>
-			<!--选项框-->
+			<div class="right {{lists[cu].theme}}">
+				<div class="right-top">
+					<span class="sousuo"></span>
+					<input class="search" type="text" placeholder="搜索所有提醒">
+					<div class="top-right">
+						<span>登录</span>
+						<span></span>
+					</div>
+				</div>
+				<div class="right-options">
+					<span class="{{lists[cu].theme}}">{{lists[cu].name}}</span>
+					<div class="options" ng-click="color($event)">选项</div>
+				</div>
+				<div class="right-finish">
+					<ul class="uls">
+						<li class="done">
+							
+							<!--已完成表头-->
+							<a href="#" ng-click="up($even)"><span class="s"></span>已完成: <span>{{Ylength()}}</span>项</a>
+							<a href="#" class="del" ng-click="del();save2local()">清除所有完成选项</a>
+							<ul>
+								
+								
+								<!--已完成-->
+								
+								<li ng-click="show($event,$index)" ng-if="v.status===1" ng-repeat="v in lists[cu].todos track by $index" class="yi">
+									<div class="big" ng-click="v.status=0;save2local()">
+										<div class="small"></div>
+									</div>
+									<input type="text" ng-model="v.name" ng-keyup="save($event)"/>
+									<div class="top"></div>
+									<div class="back"></div>									
+									<div class="bot"></div>
+									<div class="delete" ng-click="dele($event,$index);save2local()">删除</div>
+								</li>
+								
+								<!--未完成表头-->
+								
+								<li class="lis">
+									<a href="#" ng-click="up1($even)"><span class="s1"></span>未完成: <span>{{Wlength()}}</span>项</a>
+								</li>
+								
+								<!--未完成-->
+								
+								<li ng-click="shows($event,$index);save2local()" class="wei"  ng-repeat="v in lists[cu].todos track by $index" ng-if="v.status===0">
+									<div class="big" ng-click="v.status=1;save2local()"></div>
+									<input type="text" ng-model="v.name" ng-keyup="save($event)" />
+									<div class="top"></div>
+									<div class="back"></div>									
+									<div class="bot"></div>
+									<div class="delete" ng-click="dele1($event,$index);save2local()">删除</div>
+								</li>
+								
+								<!--输入框-->
+								
+								<li class="import" >
+									<div class="top"></div>
+									<div class="back"></div>									
+									<div class="bot"></div>
+									<input class="text" type="text" ng-model="value"/>
+									<div class="over" ng-click="addtodos()">完成</div>
+								</li>
+		 						<li block></li>
+							</ul>
+						</li>
+						
+					</ul>
+				</div>
+			</div>	
 			<div class="color {{lists[cu].theme}}">
 				<div class="box">
 					<input type="text" ng-model="lists[cu].name" />
 					<p>列表颜色</p>
 					<ul>
-						<li class="{{i}}" ng-repeat="i in color" ng-click="lists[cu].theme=i;save2local()" style="background: {{i}};">
-							<div class="out-cir">
-								<div class="in-cir"  style="background:{{i}}"></div>
-							</div>
-						</li>
-						
+						<li class="{{i}}" ng-repeat="i in colors"  ng-class="{index:i==lists[cu].theme}" >
+							<div ng-click="lists[cu].theme=i;save2local()"></div>
+						</li>						
 					</ul>
 					<div class="color-bottom">
 						<div class="bLeft">
-							<a href="#" ng-click="save2local()"></a>
+							<a href="#">删除</a>
 						</div>
 						<div class="bRight">
-							<a class="cancels" href="javascript:;">取消</a>
-							<a href="javascript:;" ng-click="save2local()">完成</a>
+							<a href="#">取消</a>
+							<a href="#" ng-click="save2local()">完成</a>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		 
+		</div>		
 	</body>
+	<script>
+		app=angular.module("test",[]);
+		
+		////////////////////////////////////////////////////////    删 除
+		
+		app.directive("myUl",[function(){
+			return{
+				restrict:"AE",
+				replace:true,
+				template:'<ul class="left-bottom"><div ng-transclude></div></ul>',
+				transclude:true,
+				link:function($scope,el){
+					$(document).on("keyup",":input",false)
+					
+					$(el).on("click",'li',function(){
+						$(el).find("li").removeClass("active");
+						$(this).addClass("active");
+						var self=this;
+						$scope.$apply(function(){
+							var ins=$(self).index()
+								$scope.cu=ins;																		
+								console.log($scope.cu)
+						})
+					})
+					$(el).on("keyup","input",false);
+					$(document).on("keyup",function(e){
+						
+	                    if(e.keyCode === 8||e.keyCode ===46){
+	                        var index=$(".active").index();
+	                        $scope.$apply(function(){
+	                        	if(index==-1){
+	                        		return;
+	                        	}else {	                        		
+	                        		$scope.save2local()
+	                        		if($scope.cu==0 ){	                        			
+	                        			return	                        			
+	                        		}else{
+                        				$scope.cu=$scope.cu-1;
+                        				$scope.lists.splice(index,1);
+                        				$(el).find("li").removeClass("active");
+                        			}
+	                        			                        		
+	                        	}
+	                        })
+	                     }
+	                 })
+					
+					
+				}										
+			}							
+		}])
+		
+		////////////////////////////////////////////////////////    新项目
+		
+		
+		app.directive("block",[function(){
+			return{
+				restrict:"AE",
+				template:'<li class="add"><input type="text" placeholder="新项目"  disabled /></li>',
+				replace:true,
+				link:function($scope,el){
+					var obj=$("#box .right .right-finish .uls .done ul .import");
+					$(el).on("click",function(){
+						obj.toggleClass("active")
+						$("#box .right .right-finish .uls .done ul .import input").focus()
+						return false;
+					})
+					obj.on("click",false)
+					$(document).on("click",function(){
+						obj.removeClass("active");
+					})
+					
+				}
+				
+			}
+			
+			
+		}])
+		
+		
+		
+		
+		app.controller("testCtrl",["$scope",function($scope){
+			
+			$scope.colors=["blue","green","yellow","brown","pink","orange","purple"];
+			if(localStorage.reminder){
+				$scope.lists=JSON.parse(localStorage.reminder)
+				console.table($scope.lists)
+			}else{
+				$scope.lists=[];
+			}
+			
+			$scope.cu=0;
+			
+			
+			/////////////////////////////////////////////////////       数据更新
+			
+			$scope.save2local=function(){
+				localStorage.reminder=JSON.stringify($scope.lists)
+			}
+			function maxId(){
+				var max=-Infinity;
+				for(var i=0;i<$scope.lists.length;i++){
+					var v=$scope.lists[i];
+					if(v.id>max){
+						max=v.id
+					}
+				}
+				return (max===-Infinity) ? 0:max;
+			}
+			
+			////////////////////////////////////////////////////////    添 加 
+			
+			$scope.addlist=function(){
+				var len=$scope.lists.length;
+				var index=len % 7
+				var v={
+					id: maxId()+1,
+					name:'新列表'+(len+1),
+					theme:$scope.colors[index],
+					todos:[]
+				}
+//				console.log(maxId()+1)
+				$scope.lists.push(v)
+				
+			}
+			
+			function maxid(){
+				var max=-Infinity;
+				var o=$scope.lists[$scope.cu].todos
+				for(var i=0;i<o.length;i++){
+					var v=$scope.lists[$scope.cu].todos[i];
+					if(v.id>max){
+						max=v.id
+					}
+				}
+				return (max===-Infinity) ? 0:max;
+			}
+			
+			$scope.addtodos=function(){
+//				var len=$scope.lists.length;
+//				var index=len % 7
+				var v={
+					id: maxid()+1,
+					name:$scope.value,
+					status:0
+				}
+				console.log(maxId()+1)
+				
+				$scope.lists[$scope.cu].todos.push(v)
+				$scope.save2local();
+				$scope.value=''
+			}
+			
+			$scope.dele=function(e,i){
+				e.preventDefault()
+                e.stopPropagation()
+                var newarr=[];
+				
+				var newid=$scope.lists[$scope.cu].todos[i].id;
+				$scope.lists[$scope.cu].todos.forEach(function(v,i){
+					var id=v.id
+					if(id!==newid){
+						newarr.push(v)
+					}else{
+						return
+					}
+					
+				})
+				$scope.lists[$scope.cu].todos=newarr;
+			}
+			
+			$scope.dele1=function(e,i){
+				e.preventDefault()
+                e.stopPropagation()
+                var newarr=[];
+				
+				var newid=$scope.lists[$scope.cu].todos[i].id;
+				$scope.lists[$scope.cu].todos.forEach(function(v,i){
+					var id=v.id
+					if(id!==newid){
+						newarr.push(v)
+					}else{
+						return
+					}
+					
+				})
+				$scope.lists[$scope.cu].todos=newarr;
+			}
+			
+			
+			
+			//颜色选择模块出现
+			
+			$scope.color=function(e){
+				e.preventDefault()
+                e.stopPropagation()
+				$("#box .color").toggleClass("click");
+				return false;
+			}
+			$("#box .color").on("click",false)
+			$(document).on("click",function(){
+				$("#box .color").removeClass("click");
+			})
+			
+			
+			$(document).on("click",function(){
+				$(".right-finish .uls .done ul li").removeClass("change");
+			})
+			
+			
+			$scope.show=function(e,i){
+				e.preventDefault()
+                e.stopPropagation()   
+
+				$(".right-finish .uls .done ul li").removeClass("change");
+                
+				$(".right-finish .uls .done ul .yi").eq(i).addClass("change");
+				return false;
+			}
+			
+			
+
+			$scope.shows=function(e,i){
+				e.preventDefault()
+                console.log(i)
+                e.stopPropagation()     
+                $(".right-finish .uls .done ul li").removeClass("change");
+				$(".right-finish .uls .done ul li").eq(i+1).addClass("change");
+				return false;
+			}
+			$(".right-finish .uls .done ul li input").on("click",function(){
+				$(".right-finish .uls .done ul li").removeClass("change");
+			})
+			
+			
+			
+			
+			
+			
+			$scope.Ylength=function(){
+				var x=0;
+				$scope.lists[$scope.cu].todos.forEach(function(v,i){
+					if(v.status===1){
+						x++;
+					}
+					
+				})
+				return x;
+			}
+			$scope.Wlength=function(){
+				var x=0;
+				$scope.lists[$scope.cu].todos.forEach(function(v,i){
+					if(v.status===0){
+						x++;
+					}
+					
+				})
+				return x;
+			}
+			$scope.del=function(){
+				var newarr=[];
+				$scope.lists[$scope.cu].todos.forEach(function(v,i){
+					if(v.status===0){
+						newarr.push(v)
+					}else{
+						return
+					}
+				})
+				$scope.lists[$scope.cu].todos=newarr;
+				
+				
+			}
+			
+			$scope.up=function(){
+				$(".right-finish .uls .done .s").toggleClass("rotate")
+                $(".right-finish .uls .done ul .yi").toggleClass("index")
+			}
+			
+			$scope.up1=function(){
+				$(".right-finish .uls .done ul .lis a .s1").toggleClass("rotate1")
+				
+                $(".right-finish .uls .done ul .wei").toggleClass("index")
+			}
+			
+			$scope.save=function(e){
+				e.stopPropagation()
+				if(e.keyCode == 13){				
+					$scope.save2local()										
+				}			
+			}
+			
+			$scope.save1=function(e){
+				e.stopPropagation()
+				if(e.keyCode == 13){				
+					$scope.save2local()										
+				}			
+			}
+			
+//			$scope.inss=function(e,i){
+//				e.stopPropagation()
+//				var lis=$scope.lists[$scope.cu].theme;
+//				console.log(lis)
+//				var is;
+//				$scope.colors.forEach(function(v,i){
+//					console.log(v)
+//					if(v===lis){
+//						is=i;
+//					}
+//					return
+//			})
+//				i=is;
+//				console.log(i)
+//				$(".color .box ul li").removeClass("index")
+//				$(".color .box ul li").eq(i).addClass("index")
+//			}
+			
+			
+		}])
+		
+		
+	</script>
 </html>
